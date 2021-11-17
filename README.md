@@ -9,3 +9,8 @@ types.json - json object for type strenghts, weaknesses and immunities courtesy 
 
 ### Expected Output
 The scripts should return a plain array of all alternatives starter typings.
+
+## How to Run
+`node app` <br/>
+`node scott` <br/>
+You know the drill!
