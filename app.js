@@ -1,6 +1,6 @@
 const fs = require("fs");
-const { type } = require("os");
-//Functions
+////Functions
+//Reformats JSON object to a map {type: [weaknesses]}
 const reformat = (types) => {
   let map = new Map();
 
@@ -15,8 +15,6 @@ const reformat = (types) => {
 
 const search = (types) => {
   let set = new Set();
-  let flags = [];
-  let count = 0;
   types.forEach((strength, type) => {
     let a = type;
     let b, c;
@@ -27,24 +25,19 @@ const search = (types) => {
         if (strengths_c.includes(a)) {
           let b = type_b;
           let c = type_c;
-          // console.log(`Found: ${a} => ${b} => ${c}`);
           set.add([a, b, c]);
         } else {
         }
       });
     });
   });
-  console.log("Found starter sub elements: ")
-  console.log(set);
+  return set;
 };
 
 ////Procedure
 let types = JSON.parse(fs.readFileSync("types.json"));
-
 types = reformat(types);
-search(types);
-// console.log(types);
-
+console.log(search(types));
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 ///// Notes ///////////////////////////////////////////////////////////////////////////////////
@@ -55,4 +48,3 @@ search(types);
 //O(1) is possible by writing the found results into a file and reading it afterwards.
 //Using the path data structure will simplify the code by a lot, but will retain the O(n^3) time complexity.
 //To remove the duplicates, you are to write a function after the intitial query is output.
-
